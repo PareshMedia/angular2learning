@@ -1,5 +1,62 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Polyfill(s) for older browsers -->
+<script src = "node_modules/core-js/client/shim.min.js"></script>
+<script src = "node_modules/zone.js/dist/zone.js"></script>
+<script src = "node_modules/systemjs/dist/system.src.js"></script>
+<script src = "systemjs.config.js"></script>
+
+<script>
+   System.import('main.js').catch(function(err){ console.error(err); });
+</script>
+
 <div style="text-align:center">
   <h1>
-    Welcome {{title}}!
+    Welcome {{title}}
   </h1>
 </div>
+<hr>
+<div style="text-align:center">
+  <h1 *ngIf=flag>
+    {{flag}}
+  </h1>
+</div>
+<hr>
+<div style="text-align:center">
+  <table class="table-bordered">
+    <tr *ngFor="let app of appList">
+      <td>{{app.ID}}</td>
+      <td>{{app.Name}}</td>
+    </tr>
+  </table>
+</div>
+<hr>
+<div style="text-align:center">
+  <table class="table-bordered">
+    <tr *ngFor="let p of iProduct">
+      <td>{{p.ProductID}}</td>
+      <td>{{p.ProductName}}</td>
+    </tr>
+  </table>
+</div>
+<hr>
+  <ul>
+    <li><a [routerLink] = "['/product']">Smile</a></li>
+    <li><a [routerLink] = "['/inventory']">Smile 2</a></li>
+ </ul>
+ <hr>
+
+ <router-outlet></router-outlet>
+ <hr>
+ <app-product-form></app-product-form>
+ <hr>
+ <ul>
+  <li *ngFor = "let item of collection | paginate: {
+     itemsPerPage: 5, currentPage: p }"> ... </li>
+</ul>
+<pagination-controls (pageChange) = "p = $event"></pagination-controls>
+<hr>
+
+
+
+
